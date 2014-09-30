@@ -1,3 +1,5 @@
+![travis](https://travis-ci.org/openminds/bisu.svg?branch=master)
+
 # Bisu
 
 A security maintenance application.
