@@ -20,7 +20,7 @@ class DebianTracker
 
   def fetch_suites
     releases_page = Nokogiri::HTML(open(@url))
-    releases_page.xpath('//a/@href').map(&:content).uniq - FALSE_POSITIVES
+    releases_page.xpath('//a/@href').map(&:content) - FALSE_POSITIVES
   end
 
   def fetch_listings(suite)
