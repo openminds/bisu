@@ -2,9 +2,9 @@ require 'open-uri'
 require 'oga'
 
 module Bisu
-  class Suite
+  class Platform
     RELEASES_PAGE = 'http://secure-testing.debian.net/debian-secure-testing/project/debsecan/release/1/'
-    NON_SUITE_LINK_HREFS = %w(
+    NON_PLATFORM_LINK_HREFS = %w(
       ?C=N;O=D
       ?C=M;O=A
       ?C=S;O=A
@@ -15,15 +15,15 @@ module Bisu
 
     class << self
       def all
-        scrape_suites
+        scrape_platforms
       end
     end
 
   private
     class << self
-      def scrape_suites
+      def scrape_platforms
         releases_page = Oga.parse_html(open(RELEASES_PAGE))
-        releases_page.xpath('//a/@href').map(&:text).reject { |text| NON_SUITE_LINK_HREFS.include?(text) }
+        releases_page.xpath('//a/@href').map(&:text).reject { |text| NON_PLATFORM_LINK_HREFS.include?(text) }
       end
     end
   end
