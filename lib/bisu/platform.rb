@@ -13,6 +13,12 @@ module Bisu
       GENERIC
     )
 
+    attr_accessor :name
+
+    def initialize attrs={}
+      @name = attrs[:name]
+    end
+
     class << self
       def all
         scrape_platforms
