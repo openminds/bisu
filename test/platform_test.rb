@@ -23,11 +23,11 @@ describe Bisu::Platform do
       assert Bisu::Platform.current.name == 'wheezy', "bar msg"
     end
 
-    # it 'returns nil if /etc/*release is not found' do
-    #   ENV['BISU_ENV'] = 'foo'
-    #   Bisu::Platform.stub(:release_output, nil) do
-    #     assert Bisu::Platform.current == nil
-    #   end
-    # end
+    it 'returns nil if /etc/*release is not found' do
+      ENV['BISU_ENV'] = 'foo'
+      Bisu::Platform.stub(:release_output, nil) do
+        assert Bisu::Platform.current == nil
+      end
+    end
   end
 end
