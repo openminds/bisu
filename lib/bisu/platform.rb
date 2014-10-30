@@ -20,6 +20,10 @@ module Bisu
       @name = attrs[:name]
     end
 
+    def to_s
+      @name
+    end
+
     class << self
       def all
         scrape_platforms

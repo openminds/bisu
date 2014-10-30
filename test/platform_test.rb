@@ -30,4 +30,11 @@ describe Bisu::Platform do
       end
     end
   end
+
+  describe '#to_s' do
+    it 'returns the name of the platform' do
+      platform = Bisu::Platform.new(name: 'foobar')
+      assert platform.to_s == 'foobar'
+    end
+  end
 end
