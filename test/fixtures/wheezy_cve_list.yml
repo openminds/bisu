@@ -1,0 +1,13 @@
+---
+'0': !ruby/object:OpenStruct
+  table:
+    :identifier: CVE-2014-0001
+    :description: Apache CVE description
+'1': !ruby/object:OpenStruct
+  table:
+    :identifier: CVE-2014-0001
+    :description: PHP5 CVE description
+'2': !ruby/object:OpenStruct
+  table:
+    :identifier: CVE-2014-0001
+    :description: Drupal and Drupal 2 CVE description
