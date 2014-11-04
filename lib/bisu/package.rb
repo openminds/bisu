@@ -1,6 +1,5 @@
 module Bisu
   class Package
-
     attr_accessor :platform, :name, :version
 
     def initialize options={}
@@ -20,6 +19,7 @@ module Bisu
     end
 
   private
+
     def platform_object
       Bisu::Platform.new(name: platform)
     end
