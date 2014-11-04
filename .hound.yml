@@ -3,3 +3,5 @@ ruby:
 StringLiterals:
   EnforcedStyle: single_quotes
   Enabled: true
+Style/AccessModifierIndentation:
+  Enabled: false
