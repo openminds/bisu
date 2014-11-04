@@ -9,6 +9,10 @@ module Bisu
       @version = options[:version]
     end
 
+    def vulnerable?
+      vulnerabilities.any?
+    end
+
     def vulnerabilities
       @vulnerabilities ||= platform_object.vulnerabilities.select do |vulnerability|
         vulnerability[:package] == name && vulnerability[:unstable_version] == version

@@ -48,4 +48,20 @@ describe 'Package' do
       refute_includes package.vulnerabilities, vulnerabilities_fixtures[2]
     end
   end
+
+  describe '#vulnerable?' do
+    it 'returns true if a matching vulnerability is found' do
+      package = Bisu::Package.new(platform: 'wheezy', name: 'drupal2', version: '1.2.3')
+      package.stub(:vulnerabilities, [:foo]) do
+        assert package.vulnerable?
+      end
+    end
+
+    it 'returns false if no matching vulnerabilities are found' do
+      package = Bisu::Package.new(platform: 'wheezy', name: 'drupal2', version: '1.2.3')
+      package.stub(:vulnerabilities, []) do
+        refute package.vulnerable?
+      end
+    end
+  end
 end
