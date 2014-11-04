@@ -37,4 +37,25 @@ describe Bisu::Platform do
       assert platform.to_s == 'foobar'
     end
   end
+
+  describe '#vulnerability_parser' do
+    it 'returns a Bisu::VulnerabilityParser::Debian object for all currently known debian platforms' do
+      %w(etch jessie lenny sid squeeze wheezy).each do |platform_name|
+        platform = Bisu::Platform.new(name: platform_name)
+        assert platform.send(:vulnerability_parser).instance_variable_get('@platform') == platform_name
+      end
+    end
+  end
+
+  describe '#vulnerabilities' do
+    it 'calls #parse_vulnerabilities of the parser class' do
+      parser = MiniTest::Mock.new
+      parser.expect :parse_vulnerabilities, true
+      platform = Bisu::Platform.current
+      platform.stub(:vulnerability_parser, parser) do
+        platform.vulnerabilities
+        parser.verify
+      end
+    end
+  end
 end

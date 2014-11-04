@@ -24,6 +24,10 @@ module Bisu
       @name
     end
 
+    def vulnerabilities
+      @vulnerabilities ||= vulnerability_parser.parse_vulnerabilities
+    end
+
     class << self
       def all
         scrape_platforms
@@ -51,6 +55,13 @@ module Bisu
 
     def self.release_output
       `head -1 /etc/*release`
+    end
+
+    def vulnerability_parser
+      case name
+      when "etch", "jessie", "lenny", "sid", "squeeze", "wheezy"
+        Bisu::VulnerabilityParser::Debian.new(platform: name)
+      end
     end
   end
 end
