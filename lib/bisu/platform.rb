@@ -61,7 +61,7 @@ module Bisu
     def vulnerability_parser
       case name
       when "etch", "jessie", "lenny", "sid", "squeeze", "wheezy"
-        Object.const_get("Bisu::VulnerabilityParser::Debian")
+        Bisu::VulnerabilityParser::Debian.new(platform: name)
       end
     end
   end
