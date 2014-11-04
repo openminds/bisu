@@ -24,6 +24,10 @@ module Bisu
       @name
     end
 
+    def vulnerabilities
+      @vulnerabilities ||= vulnerability_parser.parse_vulnerabilities
+    end
+
     class << self
       def all
         scrape_platforms

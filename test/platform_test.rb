@@ -46,4 +46,16 @@ describe Bisu::Platform do
       end
     end
   end
+
+  describe '#vulnerabilities' do
+    it 'calls #parse_vulnerabilities of the parser class' do
+      parser = MiniTest::Mock.new
+      parser.expect :parse_vulnerabilities, true
+      platform = Bisu::Platform.current
+      platform.stub(:vulnerability_parser, parser) do
+        platform.vulnerabilities
+        parser.verify
+      end
+    end
+  end
 end
