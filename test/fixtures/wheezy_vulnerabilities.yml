@@ -1,6 +1,7 @@
 ---
 - !ruby/object:OpenStruct
   table:
+    :platform: wheezy
     :package: apache2
     :identifier: CVE-2014-0001
     :description: Apache CVE description
@@ -11,6 +12,7 @@
     :fix_available: false
 - !ruby/object:OpenStruct
   table:
+    :platform: wheezy
     :package: php5
     :identifier: CVE-2014-0001
     :description: PHP5 CVE description
@@ -23,6 +25,7 @@
     :fix_available: true
 - !ruby/object:OpenStruct
   table:
+    :platform: wheezy
     :package: drupal
     :identifier: CVE-2014-0001
     :description: Drupal and Drupal 2 CVE description
@@ -33,6 +36,7 @@
     :fix_available: false
 - !ruby/object:OpenStruct
   table:
+    :platform: wheezy
     :package: drupal2
     :identifier: CVE-2014-0001
     :description: Drupal and Drupal 2 CVE description
