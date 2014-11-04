@@ -1,5 +1,13 @@
 require_relative 'test_helper'
 
+def vulnerabilities_fixtures
+  @vulnerabilities_fixures ||= YAML.load_file('./test/fixtures/wheezy_vulnerabilities.yml')
+end
+
+def vulnerability_data
+  @vulnerability_data ||= File.read('./test/fixtures/wheezy_vulnerability_data.txt')
+end
+
 describe 'Package' do
   describe '#new' do
     it 'uses the current platform if none is submitted in the arguments' do
@@ -17,6 +25,27 @@ describe 'Package' do
       package = Bisu::Package.new(platform: 'foobar')
       assert package.send(:platform_object).name == 'foobar'
       assert Bisu::Platform === package.send(:platform_object)
+    end
+  end
+
+  describe '#vulnerabilities' do
+    before do
+      Bisu::VulnerabilityParser::Debian.any_instance.stubs(:vulnerability_data).returns(vulnerability_data)
+    end
+
+    it 'includes matching vulnerabilities on name, platform and version' do
+      package = Bisu::Package.new(platform: 'wheezy', name: 'drupal2', version: '1.2.3')
+      assert_includes package.vulnerabilities, vulnerabilities_fixtures[3]
+    end
+
+    it 'does not include a vulnerability for another version' do
+      package = Bisu::Package.new(platform: 'wheezy', name: 'drupal2', version: '1.2.3')
+      refute_includes package.vulnerabilities, vulnerabilities_fixtures[4]
+    end
+
+    it 'does not include a vulnerability for another package' do
+      package = Bisu::Package.new(platform: 'wheezy', name: 'drupal2', version: '1.2.3')
+      refute_includes package.vulnerabilities, vulnerabilities_fixtures[2]
     end
   end
 end

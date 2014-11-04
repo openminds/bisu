@@ -9,6 +9,12 @@ module Bisu
       @version = options[:version]
     end
 
+    def vulnerabilities
+      @vulnerabilities ||= platform_object.vulnerabilities.select do |vulnerability|
+        vulnerability[:package] == name && vulnerability[:unstable_version] == version
+      end
+    end
+
   private
     def platform_object
       Bisu::Platform.new(name: platform)
