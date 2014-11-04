@@ -11,4 +11,12 @@ describe 'Package' do
       assert package.platform == 'foobar'
     end
   end
+
+  describe '#platform_object' do
+    it "returns a Platform object with the same name as the package's platform name" do
+      package = Bisu::Package.new(platform: 'foobar')
+      assert package.send(:platform_object).name == 'foobar'
+      assert Bisu::Platform === package.send(:platform_object)
+    end
+  end
 end

@@ -8,5 +8,10 @@ module Bisu
       @name = options[:name]
       @version = options[:version]
     end
+
+  private
+    def platform_object
+      Bisu::Platform.new(name: platform)
+    end
   end
 end
