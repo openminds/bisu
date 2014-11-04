@@ -45,3 +45,14 @@
     :urgency: :low
     :remotely_exploitable: :unknown
     :fix_available: false
+- !ruby/object:OpenStruct
+  table:
+    :platform: wheezy
+    :package: drupal2
+    :identifier: CVE-2014-0001
+    :description: Drupal and Drupal 2 CVE description
+    :unstable_version: 1.2.4
+    :other_versions: []
+    :urgency: :low
+    :remotely_exploitable: :unknown
+    :fix_available: false
