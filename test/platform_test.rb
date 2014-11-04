@@ -19,14 +19,14 @@ describe Bisu::Platform do
   describe '#current' do
     it 'returns the name of the platform in test environment' do
       ENV['BISU_ENV'] = 'test'
-      assert Bisu::Platform.current.kind_of?(Bisu::Platform), "foo msg"
-      assert Bisu::Platform.current.name == 'wheezy', "bar msg"
+      assert Bisu::Platform.current.is_a?(Bisu::Platform)
+      assert Bisu::Platform.current.name == 'wheezy'
     end
 
     it 'returns nil if /etc/*release is not found' do
       ENV['BISU_ENV'] = 'foo'
       Bisu::Platform.stub(:release_output, nil) do
-        assert Bisu::Platform.current == nil
+        assert Bisu::Platform.current.nil?
       end
     end
   end

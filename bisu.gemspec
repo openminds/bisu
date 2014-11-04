@@ -8,14 +8,14 @@ Gem::Specification.new do |spec|
   spec.version       = Bisu::VERSION
   spec.authors       = ['Hannes Fostie']
   spec.email         = ['hannes.fostie@gmail.com']
-  spec.summary       = %q{A security maintenance application.}
-  spec.description   = %q{A security maintenance application.}
+  spec.summary       = %w(A security maintenance application.)
+  spec.description   = %w(A security maintenance application.)
   spec.homepage      = 'https://github.com/openminds/bisu'
   spec.license       = 'MIT'
 
   spec.files         = Dir.glob(['lib/**/*.rb']).select { |path| File.file?(path) }
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.executables   = spec.files.grep(/^bin/) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(/^(test|spec|features)/)
   spec.require_paths = ['lib']
 
   spec.add_dependency 'oga', '~> 0.1.3'

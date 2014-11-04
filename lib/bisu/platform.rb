@@ -3,7 +3,7 @@ require 'oga'
 
 module Bisu
   class Platform
-    DEV_ETC_RELEASE_VALUE = %q{PRETTY_NAME="Debian GNU/Linux 7 (wheezy)"}
+    DEV_ETC_RELEASE_VALUE = %q(PRETTY_NAME="Debian GNU/Linux 7 (wheezy)")
     RELEASES_PAGE = 'http://secure-testing.debian.net/debian-secure-testing/project/debsecan/release/1/'
     NON_PLATFORM_LINK_HREFS = %w(
       ?C=N;O=D
@@ -16,8 +16,8 @@ module Bisu
 
     attr_accessor :name
 
-    def initialize attrs={}
-      @name = attrs[:name]
+    def initialize(attributes = {})
+      @name = attributes[:name]
     end
 
     def to_s
@@ -43,15 +43,14 @@ module Bisu
     end
 
   private
-    class << self
-      def scrape_platforms
-        releases_page = Oga.parse_html(open(RELEASES_PAGE))
-        releases_page.xpath('//a/@href').map(&:text).reject { |text| NON_PLATFORM_LINK_HREFS.include?(text) }
-      end
 
-      def release_output
-        `head -1 /etc/*release`
-      end
+    def self.scrape_platforms
+      releases_page = Oga.parse_html(open(RELEASES_PAGE))
+      releases_page.xpath('//a/@href').map(&:text).reject { |text| NON_PLATFORM_LINK_HREFS.include?(text) }
+    end
+
+    def self.release_output
+      `head -1 /etc/*release`
     end
   end
 end
