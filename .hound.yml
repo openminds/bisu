@@ -1,5 +1,5 @@
 ruby:
   enabled: true
-StringLiterals:
+Style/StringLiterals:
   EnforcedStyle: single_quotes
   Enabled: true
