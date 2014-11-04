@@ -53,5 +53,12 @@ module Bisu
         `head -1 /etc/*release`
       end
     end
+
+    def vulnerability_parser
+      case name
+      when "etch", "jessie", "lenny", "sid", "squeeze", "wheezy"
+        Object.const_get("Bisu::VulnerabilityParser::Debian")
+      end
+    end
   end
 end

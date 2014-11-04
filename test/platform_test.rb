@@ -37,4 +37,13 @@ describe Bisu::Platform do
       assert platform.to_s == 'foobar'
     end
   end
+
+  describe '#vulnerability_parser' do
+    it 'returns Bisu::VulnerabilityParser::Debian for all currently known debian platforms' do
+      %w(etch jessie lenny sid squeeze wheezy).each do |platform|
+        platform = Bisu::Platform.new(name: platform)
+        assert platform.send(:vulnerability_parser) == Bisu::VulnerabilityParser::Debian
+      end
+    end
+  end
 end
