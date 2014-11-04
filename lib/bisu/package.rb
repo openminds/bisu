@@ -4,7 +4,7 @@ module Bisu
     attr_accessor :platform
 
     def initialize options={}
-      @platform = options[:platform] ? options[:platform].to_s : Bisu::Platform.current.to_s
+      @platform = options.delete(:platform) || Bisu::Platform.current.to_s
     end
   end
 end
